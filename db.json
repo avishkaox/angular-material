@@ -1,0 +1,139 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "employees": [
+    {
+      "id": "d40f",
+      "firstName": "avishka",
+      "lastName": "madushanka",
+      "email": "avishka@gmail.com",
+      "dateOfBirth": "2025-05-20T18:30:00.000Z",
+      "gender": "male",
+      "education": "highschool",
+      "company": "qualitapps",
+      "experience": 5,
+      "package": 1000
+    },
+    {
+      "id": "c8b7",
+      "firstName": "asdas",
+      "lastName": "asdas",
+      "email": "asdasd@gmail.com",
+      "dateOfBirth": "2025-05-07T18:30:00.000Z",
+      "gender": "male",
+      "education": "highschool",
+      "company": "asd",
+      "experience": 5,
+      "package": 5858
+    },
+    {
+      "id": "8ad2",
+      "firstName": "adasdd",
+      "lastName": "asdasd",
+      "email": "asdasd@gmail.com",
+      "dateOfBirth": "2025-05-01T18:30:00.000Z",
+      "gender": "male",
+      "education": "highschool",
+      "company": "asdsa",
+      "experience": 88,
+      "package": 88888
+    },
+    {
+      "id": "434b",
+      "firstName": "asdsa",
+      "lastName": "asdas",
+      "email": "asdsad@gmail.com",
+      "dateOfBirth": "2025-05-01T18:30:00.000Z",
+      "gender": "male",
+      "education": "highschool",
+      "company": "asd",
+      "experience": 8989,
+      "package": 898989
+    },
+    {
+      "id": "3632",
+      "firstName": "asdsa",
+      "lastName": "sadasd",
+      "email": "asdas@gmail.com",
+      "dateOfBirth": "2025-05-02T18:30:00.000Z",
+      "gender": "male",
+      "education": "bachelor",
+      "company": "asd",
+      "experience": 88,
+      "package": 888
+    },
+    {
+      "id": "2f93",
+      "firstName": "asdas",
+      "lastName": "asdads",
+      "email": "asdasd@gmail.com",
+      "dateOfBirth": "2025-05-16T18:30:00.000Z",
+      "gender": "male",
+      "education": "bachelor",
+      "company": "asd",
+      "experience": 888,
+      "package": 8888
+    },
+    {
+      "id": "6bab",
+      "firstName": "asd",
+      "lastName": "sadasd",
+      "email": "sadasd@gmail.com",
+      "dateOfBirth": "2025-05-01T18:30:00.000Z",
+      "gender": "male",
+      "education": "bachelor",
+      "company": "asd",
+      "experience": 88,
+      "package": 888
+    },
+    {
+      "id": "9a15",
+      "firstName": "new",
+      "lastName": "name",
+      "email": "avishka@gmail.com",
+      "dateOfBirth": "2025-04-30T18:30:00.000Z",
+      "gender": "male",
+      "education": "bachelor",
+      "company": "my company",
+      "experience": 25,
+      "package": 800
+    },
+    {
+      "id": "27d3",
+      "firstName": "user",
+      "lastName": "two",
+      "email": "user@gmail.com",
+      "dateOfBirth": "1993-06-17T18:30:00.000Z",
+      "gender": "male",
+      "education": "phd",
+      "company": "asd",
+      "experience": 8,
+      "package": 90000
+    }
+  ]
+}
