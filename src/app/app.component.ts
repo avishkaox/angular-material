@@ -103,6 +103,26 @@ import { CommonModule } from '@angular/common';
           <td mat-cell *matCellDef="let row">{{ row.package | currency }}</td>
         </ng-container>
 
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>Action</th>
+          <td mat-cell *matCellDef="let row">
+            <button
+              mat-icon-button
+              color="primary"
+              (click)="openUpdateEmpForm(row)"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="warn"
+              (click)="deleteEmployee(row.id)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
@@ -145,6 +165,7 @@ export class AppComponent implements OnInit {
     'company',
     'experience',
     'package',
+    'action',
   ];
   dataSource!: MatTableDataSource<any>;
 
@@ -169,7 +190,30 @@ export class AppComponent implements OnInit {
     private readonly _empService: EmployeeService
   ) {}
   openAddEditEmpForm() {
-    this._dialog.open(EmpAddEditComponent);
+    const dialogRef = this._dialog.open(EmpAddEditComponent);
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+          this.getAllEmployeeList();
+        }
+      },
+    });
+  }
+
+  openUpdateEmpForm(data?: any) {
+    this._dialog.open(EmpAddEditComponent , {
+      data,
+    } );
+
+  }
+  deleteEmployee(id: number) {
+    this._empService.deleteEmployee(id).subscribe({
+      next: (res) => {
+        alert('Employee deleted!');
+        this.getAllEmployeeList();
+      },
+      error: console.log,
+    });
   }
 
   getAllEmployeeList() {

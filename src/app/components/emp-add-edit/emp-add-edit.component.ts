@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -18,7 +18,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { EmployeeService } from '../../services/employee.service';
-import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { AlertComponent } from '../alert/alert.component';
 
 @Component({
@@ -166,9 +171,15 @@ import { AlertComponent } from '../alert/alert.component';
           </div>
           <div class="row">
             <div class="row2" mat-dialog-actions>
-              <button mat-raised-button color="warn" (click)="closeAddEditEmpForm()" >Cancel</button>
+              <button
+                mat-raised-button
+                color="warn"
+                (click)="closeAddEditEmpForm()"
+              >
+                Cancel
+              </button>
               <button mat-raised-button color="primary" type="submit">
-                Save
+                {{ data ? 'Update' : 'Save' }}
               </button>
             </div>
           </div>
@@ -207,13 +218,14 @@ import { AlertComponent } from '../alert/alert.component';
 
   `,
 })
-export class EmpAddEditComponent {
+export class EmpAddEditComponent implements OnInit {
   empForm: FormGroup;
   constructor(
     private readonly fb: FormBuilder,
     private readonly _empService: EmployeeService,
     private readonly _dialogRef: MatDialogRef<EmpAddEditComponent>,
-    private readonly _dialog: MatDialog
+    private readonly _dialog: MatDialog,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.empForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -234,17 +246,35 @@ export class EmpAddEditComponent {
     { value: 'phd', viewValue: 'PhD' },
   ];
 
+  ngOnInit(): void {
+    if (this.data) {
+      this.empForm.patchValue(this.data);
+    }
+  }
+
   onSubmit() {
     if (this.empForm.valid) {
-      this._empService.addEmployee(this.empForm.value).subscribe({
-        next: (val: any) => {
-          this._dialog.open(AlertComponent);
-          this._dialogRef.close();
-        },
-        error: (err: any) => {
-          console.error('Error adding employee', err);
-        },
-      });
+      if (this.data) {
+        this._empService.updateEmployee( this.data.id ,this.empForm.value).subscribe({
+          next: (val: any) => {
+            this._dialog.open(AlertComponent);
+            this._dialogRef.close(true);
+          },
+          error: (err: any) => {
+            console.error('Error adding employee', err);
+          },
+        });
+      } else {
+        this._empService.addEmployee(this.empForm.value).subscribe({
+          next: (val: any) => {
+            this._dialog.open(AlertComponent);
+            this._dialogRef.close(true);
+          },
+          error: (err: any) => {
+            console.error('Error adding employee', err);
+          },
+        });
+      }
     } else {
       console.log('Form is invalid');
     }
